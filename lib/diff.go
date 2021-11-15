@@ -3,6 +3,7 @@ package jd
 import (
 	"bytes"
 	"encoding/json"
+        "github.com/fatih/color"
 )
 
 type DiffElement struct {
@@ -12,6 +13,7 @@ type DiffElement struct {
 }
 
 func (d DiffElement) Render() string {
+        greenColor := color.New(color.FgGreen).Add(color.Bold)
 	b := bytes.NewBuffer(nil)
 	b.WriteString("@ ")
 	b.Write([]byte(jsonArray(d.Path).Json()))
@@ -33,8 +35,14 @@ func (d DiffElement) Render() string {
 			if err != nil {
 				panic(err)
 			}
-			b.WriteString("+ ")
-			b.Write(newValueJson)
+			greenColor.Println(
+				b.WriteString("+ "),
+			)
+			//b.WriteString("+ ")
+                        greenColor.Println(
+                                b.WriteString(newValueJson),
+                        )
+//			b.Write(newValueJson)
 			b.WriteString("\n")
 		}
 	}
