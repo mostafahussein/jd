@@ -36,10 +36,8 @@ func (d DiffElement) Render() string {
 			if err != nil {
 				panic(err)
 			}
-			greenColor.Println(
-				b.WriteString("+ "),
-			)
-			//b.WriteString("+ ")
+
+			b.WriteString("+ ")
 			greenColor.Println(
 				b.WriteString(newValueJson),
 			)
